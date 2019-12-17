@@ -7,7 +7,7 @@ const port = 8080
 const Auth = require('./controllers/routes/Auth')
 
 app.get('/' , (req,res) => {
-    res.send("Bijour")
+    res.send("Bijour test")
 })
 
 
