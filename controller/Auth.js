@@ -97,7 +97,7 @@ auth.post('/login', async (req, res) =>{
         lastname: userFound.lastName,
         education: userFound.education
     }
-    let token = jwt.sign(payload, "admin123456" , {
+    let token = jwt.sign(payload, process.env.SECRET_KEY , {
         expiresIn: 7200
         //2hours
     })

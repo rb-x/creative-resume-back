@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
+require('dotenv').config()
 const bodyLogger = require('./middlewares/BodyLogger.js')
-
+const AuthMiddleWare = require('./middlewares/AuthMiddleWare.js')
+const morgan = require('morgan')
 const port = 8080
 
 const Auth = require('./controller/Auth')
@@ -11,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({
   extended: true
 }))
-
+app.use(bodyLogger)
 
 
 
@@ -23,6 +25,9 @@ app.get('/' , (req,res) => {
     res.status(200).send('ok')
 })
 
+app.get('/admin', AuthMiddleWare ,(req,res) => {
+  res.send(' espace privé !')
+})
 
 
 app.get('*' , (req ,res) => res.status(404).send('not found !!'))
