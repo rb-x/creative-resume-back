@@ -6,9 +6,19 @@ const port = 8080
 
 const Auth = require('./controllers/routes/Auth')
 
+app.use('/auth', Auth)
+
+
 app.get('/' , (req,res) => {
-    res.send("Bijour test 1")
+    res.status(200).send('ok')
 })
 
 
+
+app.get('*' , (req ,res) => res.status(404).send('not found !!'))
+
 app.listen(port, () =>  console.log(`listening on port : ${port}`))
+
+
+
+
