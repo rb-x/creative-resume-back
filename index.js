@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 require('dotenv').config()
 const bodyLogger = require('./middlewares/BodyLogger.js')
-const AuthMiddleWare = require('./middlewares/AuthMiddleWare.js')
+const authroute = require('./middlewares/AuthMiddleWare.js')
 const morgan = require('morgan')
 const port = 8080
 
@@ -25,7 +25,7 @@ app.get('/' , (req,res) => {
     res.status(200).send('ok')
 })
 
-app.get('/admin', AuthMiddleWare ,(req,res) => {
+app.get('/admin', authroute ,(req,res) => {
   res.send(' espace privé !')
 })
 
