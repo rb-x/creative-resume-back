@@ -4,7 +4,17 @@ const bodyLogger = require('./middlewares/BodyLogger.js')
 
 const port = 8080
 
-const Auth = require('./controllers/routes/Auth')
+const Auth = require('./controller/Auth')
+
+
+app.use(express.json())
+app.use(express.urlencoded({
+  extended: true
+}))
+
+
+
+
 
 app.use('/auth', Auth)
 

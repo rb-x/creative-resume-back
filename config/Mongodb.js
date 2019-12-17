@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const chalk = require('chalk')
-const dbPath = process.env.MONGO_URI;
+const dbPath = "mongodb+srv://admin_riadh:4jYzx5QN2Lfc9Ay1@cluster0-cdqp2.mongodb.net/test?retryWrites=true&w=majority"
 mongoose.connect(dbPath, {
     useNewUrlParser: true,
     useUnifiedTopology: true

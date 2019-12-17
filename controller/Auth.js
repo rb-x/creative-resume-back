@@ -1,4 +1,5 @@
-const auth = require('express').Router() 
+const express = require('express')
+const auth = express.Router() 
 const jwt = require("jsonwebtoken"); 
 const bcrypt = require("bcryptjs");
 const Joi = require("@hapi/joi");
@@ -9,14 +10,16 @@ const User = require("../models/User")
 //TODO
 
 const httpSchemaValidation = (input , type) => {
-      let schema ;
-      if(type === "login") {
+    let schema;
+    if(type === "login") {
+  
         schema = {
                 email : Joi.string().min(5).required(),
                 password : Joi.string().min(5).required(),
                 }
         }
-        else if (type === "register") {
+    else if (type === "register") {
+     
             schema = {
                 email : Joi.string().min(5).required(),
                 password : Joi.string().min(5).required(),
@@ -25,13 +28,13 @@ const httpSchemaValidation = (input , type) => {
                 education : Joi.string().required()
             }
         }
+ 
         return Joi.validate(input, schema)
 } 
 
-
 auth.post('/register', async (req, res) =>{
     const {email , password, firstName, lastName, education} = req.body
-    const {error} = httpSchemaValidation(req.body) 
+    const {error} = httpSchemaValidation(req.body , "register") 
     if (error) return res.status(400).send(error.details[0].message)
     
     const today = new Date()
@@ -71,10 +74,11 @@ auth.post('/register', async (req, res) =>{
 })
 
 auth.post('/login', async (req, res) =>{
-    const {email , password} = req.body
-    const {error} = httpSchemaValidation(req.body) 
-    if (error) return res.status(400).send(error.details[0].message)
 
+    const {email , password} = req.body
+    const {error} = httpSchemaValidation(req.body,"login") 
+    if (error) return res.status(400).send(error.details[0].message)
+   
     // Verification si il existe
     const userFound = await User.findOne({
         email
@@ -89,20 +93,27 @@ auth.post('/login', async (req, res) =>{
     let payload = {
         id : userFound._id , 
         email : userFound.email,
+        firstName: userFound.firstName,
+        lastname: userFound.lastName,
+        education: userFound.education
     }
-    let token = jwt.sign(payload, "admin123456")
+    let token = jwt.sign(payload, "admin123456" , {
+        expiresIn: 7200
+        //2hours
+    })
 
     if(passwordMatch) {
 
-     return res.status(200).json({token , user : {
-         id : userFound._id , 
-         email : userFound.email , 
-         created : userFound.created_at
-     }})
+    return res.status(200).json({token , user : {
+        id : userFound._id , 
+        email : userFound.email , 
+        created : userFound.created_at
+    }})
     }else {
         return res.status(401).json({err : "User or password incorrect"})
     }
 })
 
- 
+
+module.exports = auth
 
