@@ -6,7 +6,7 @@ const authroute = require('./middlewares/authmiddleware')
 const morgan = require('morgan')
 const port = 8080
 
-const Auth = require('./controller/Auth')
+const Auth = require('./routes/Auth')
 
 
 app.use(express.json())
@@ -25,9 +25,7 @@ app.get('/' , (req,res) => {
     res.status(200).send('ok')
 })
 
-app.get('/admin', authroute ,(req,res) => {
-  res.send(' espace privé !')
-})
+ 
 
 
 app.get('*' , (req ,res) => res.status(404).send('not found !!'))
