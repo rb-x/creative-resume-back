@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
-const bodyLogger = require('./middlewares/BodyLogger.js')
-const authroute = require('./middlewares/AuthMiddleWare.js')
+const bodyLogger = require('./middlewares/BodyLogger')
+const authroute = require('./middlewares/authmiddleware')
 const morgan = require('morgan')
 const port = 8080
 
