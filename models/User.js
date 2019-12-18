@@ -26,7 +26,10 @@ const UserScheme = new Schema({
         type : Date,
         required : true
     },
-
+    creation_CV :{
+        type : [{ type: Schema.Types.ObjectId, ref: 'CurriculumVitae' }],
+        required : false
+    }
 })
 
 const User = mongoose.model('User', UserScheme)

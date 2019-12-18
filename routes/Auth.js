@@ -79,7 +79,7 @@ auth.post('/login', async (req, res) =>{
     const {error} = httpSchemaValidation(req.body,"login") 
     if (error) return res.status(400).send(error.details[0].message)
    
-    // Verification si il existe
+    // Verification exist ?
     const userFound = await User.findOne({
         email
     })

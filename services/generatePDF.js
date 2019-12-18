@@ -22,3 +22,6 @@ const generatePDF = async () => {
 
 generatePDF()
 module.exports = generatePDF
+
+
+// loggg envoie son token + cvcreated : [{id : xxxx , numero de template : },{id : xxxx , numero de template : }]
