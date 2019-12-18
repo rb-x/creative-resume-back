@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyLogger = require('./middlewares/BodyLogger')
-const authroute = require('./middlewares/authmiddleware')
 const morgan = require('morgan')
 const port = process.env.PORT || 8080
 
