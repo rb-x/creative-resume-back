@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const bodyLogger = require('./middlewares/BodyLogger')
 const morgan = require('morgan')
 const port = process.env.PORT || 8080
@@ -14,7 +15,7 @@ app.use(express.urlencoded({
 app.use(bodyLogger)
 
 
-
+app.use(cors())
 app.use('/auth', Auth)
 
 
