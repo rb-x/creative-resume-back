@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/rb-x/hck1.git"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
