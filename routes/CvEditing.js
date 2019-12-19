@@ -30,7 +30,32 @@ cv_edit.post("/new" , authroute , async (req,res) => {
     const cv_data = {
         title : title, 
         data : {
-            id : "null_"
+            title: "COLORFUL TEMPLATE",
+            firstName: "Michel",
+            lastName: "Platini",
+            subHeader: "Etudiant en deuxième année chez ESTIAM",
+            email: "mail@yourthing.com",
+            phone: "+33 6 00 00 00 00",
+            location: "Paris 75001 - France",
+            jobTitle: "Your job title here",
+            employee: "OLORUNTECH",
+            dateJob: "Janvier 2019 - Mars 2020",
+            locationJob: "Abidjan",
+            wdyd: "You can create your content here and edit this.",
+            jobTitleModal: "Your job title",
+            employeeModal: "Company",
+            dateJobModal: "Date of your current job",
+            locationJobModal: "Location of your job",
+            wdydModal: "You can create your content here and edit this.",
+            degree: "Master",
+            titleDegree: "Ingénieurie informatique ",
+            locationDegree:"Éstiam - École supérieure des technologies de l'information ",
+            dateDegree: "17 Janvier 2018 - 17 Janvier 2023",
+            contentDegree: "You can create your content here and edit this.",
+            degreeModal: "Your level of degree",
+            titleDegreeModal: "Degree title",
+            dateDegreeModal: "School location",
+            contentDegreeModal: "Date of your degree"
         }, 
         created_at : now
     }
