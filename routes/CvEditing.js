@@ -112,19 +112,18 @@ cv_edit.get('/del_cv/:cv_id' , authroute ,async (req,res) => {
 
     if(!userfound) return res.status(400).json({err : "user does not exist"})
     let {creation_CV} = userfound
-    console.log(creation_CV , cv_id)
-    const filteredArray =  creation_CV.filter( cv_key => cv_key !== cv_id)
-    console.log(filteredArray)
+    //console.log(creation_CV , cv_id)
+    const filteredArray =  creation_CV.filter( cv_key => cv_key.id != cv_id)
     userfound.creation_CV = filteredArray
-     
+  
+   
     
     try{
         await CurriculumVitae.findByIdAndDelete(cv_id)
-     
         await userfound.save()
         return res.status(200).json({ cv_list : userfound.creation_CV , cv_deleted : cv_id , success : true})
     }catch(err){
-        return  res.json({err })
+        return  res.json({err : "err" })
     }
 
 

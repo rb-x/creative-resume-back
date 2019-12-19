@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-// require('dotenv').config()
+require('dotenv').config()
 const bodyLogger = require('./middleware/BodyLogger')
 const port = process.env.PORT || 8080
 const cors = require('cors')
