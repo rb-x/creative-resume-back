@@ -3,14 +3,16 @@ const Schema = mongoose.Schema
 
 const CurriculumScheme = new Schema({
  
-    author : { type: Schema.Types.ObjectId, ref: 'User' },
      title : {
         type: String,
         required: true
     },
-
     data : {
         type : Object
+    },
+    created_at : {
+        type : Date , 
+        resquired : true
     }
 })
 

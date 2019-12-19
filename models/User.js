@@ -26,8 +26,12 @@ const UserScheme = new Schema({
         type : Date,
         required : true
     },
+    location : {
+        type : String, 
+        required : true
+    },
     creation_CV :{
-        type : [{ type: Schema.Types.ObjectId, ref: 'CurriculumVitae' }],
+        type : [Object],
         required : false
     }
 })

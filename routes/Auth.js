@@ -21,14 +21,15 @@ const httpSchemaValidation = (input , type) => {
                 password : Joi.string().min(5).required(),
                 firstName : Joi.string().min(3).required(),
                 lastName : Joi.string().min(1).required(),
-                education : Joi.string().required()
+                education : Joi.string().required(),
+                location : Joi.string().required()
             }
         }
         return Joi.validate(input, schema)
 } 
 
 auth.post('/register', async (req, res) =>{
-    const {email , password, firstName, lastName, education} = req.body
+    const {email , password, firstName, lastName, education , location} = req.body
     const {error} = httpSchemaValidation(req.body , "register") 
     if (error) return res.status(400).send(error.details[0].message)
     const today = new Date()
@@ -38,7 +39,9 @@ auth.post('/register', async (req, res) =>{
         firstName : firstName,
         lastName : lastName,
         education : education,
-        created_at : today
+        location : location,
+        created_at : today,
+        creation_CV : []
     }
     // Verification si l'utilisateur existe deja ?
     try {
