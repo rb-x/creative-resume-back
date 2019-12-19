@@ -1,7 +1,7 @@
 const express = require('express')
 const cv_edit = express.Router() 
 const Joi = require("@hapi/joi");
-const authroute = require('../middlewares/authmiddleware')
+const authroute = require('../middleware/authjwt')
 const CurriculumVitae = require('../models/CurriculumVitae') 
 const User = require('../models/User') 
 

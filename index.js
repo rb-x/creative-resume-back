@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 // require('dotenv').config()
-const bodyLogger = require('./middlewares/BodyLogger')
+const bodyLogger = require('./middleware/BodyLogger')
 const port = process.env.PORT || 8080
 const cors = require('cors')
 const Auth = require('./routes/Auth')
