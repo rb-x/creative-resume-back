@@ -94,6 +94,48 @@ cv_edit.put('/save_cv/:id' , authroute,async (req,res) => {
     // on retourne a l'user la data saved
 
 })
+
+
+cv_edit.get('/del_cv/:cv_id' , authroute ,async (req,res) => {
+    const {cv_id} = req.params
+    // chercher user.id , filtrer parmis ses cv 
+     
+    let userfound = null
+    try {
+        userfound = await User.findById(req.user.id)
+      
+    } catch(err) {
+        console.log(err)
+        return res.status(500).json({err})
+    }
+
+
+    if(!userfound) return res.status(400).json({err : "user does not exist"})
+    let {creation_CV} = userfound
+    console.log(creation_CV , cv_id)
+    const filteredArray =  creation_CV.filter( cv_key => cv_key !== cv_id)
+    console.log(filteredArray)
+    userfound.creation_CV = filteredArray
+     
+    
+    try{
+        await CurriculumVitae.findByIdAndDelete(cv_id)
+     
+        await userfound.save()
+        return res.status(200).json({ cv_list : userfound.creation_CV , cv_deleted : cv_id , success : true})
+    }catch(err){
+        return  res.json({err })
+    }
+
+
+
+
+
+    // repondre avec  la new liste
+    // if 200 change the state in react context
+    
+
+})
  
 
 module.exports = cv_edit
