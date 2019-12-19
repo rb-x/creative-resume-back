@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-require('dotenv').config()
+// require('dotenv').config()
 const bodyLogger = require('./middlewares/BodyLogger')
 const port = 8080
 
