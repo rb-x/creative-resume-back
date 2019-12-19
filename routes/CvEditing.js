@@ -30,7 +30,7 @@ cv_edit.post("/new" , authroute , async (req,res) => {
     const cv_data = {
         title : title, 
         data : {
-            test : "test data"
+            id : "null_"
         }, 
         created_at : now
     }
@@ -88,13 +88,22 @@ cv_edit.get('/fetch_cvs/' , authroute , async (req,res) => {
 
 })
 
-cv_edit.put('/save_cv/:id' , authroute,async (req,res) => {
+cv_edit.post('/save_cv' , authroute, async (req,res) => {
     // l'utilisateur nous envoi son state avec les info du cv + l'id du cv
+    const {cv_id , data_cv } = req.body
+
+    try{
+        const cv_found = await CurriculumVitae.findById(cv_id)
+        cv_found.data = data_cv
+        await cv_found.save()
+        return res.json({data : cv_found , saved : true })
+    }catch(ex){
+        return console.log(ex)
+    }
     // on va modifier le cv en question (id) avec la nouvelle data
     // on retourne a l'user la data saved
-
+  
 })
-
 
 cv_edit.get('/del_cv/:cv_id' , authroute ,async (req,res) => {
     const {cv_id} = req.params
